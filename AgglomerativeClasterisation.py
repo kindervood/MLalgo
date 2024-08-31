@@ -3,7 +3,7 @@ import pandas as pd
 from scipy.spatial.distance import cosine
 
 # Агломеративный(снизу вверх) алгоритм иерархической кластеризации
-# Реализованый метрики: euclidean, chebyshev, manhattan, cosine
+# Реализованы метрики: euclidean, chebyshev, manhattan, cosine
 # n_clusters – количество кластеров, которые нужно сформировать.
 # metric - метрика для подсчета расстояния
 class MyAgglomerative:
