@@ -15,7 +15,8 @@ def information_gain(data, mask):
     left, right = data[mask], data[~mask]
     return mse(data) - len(left) / len(data) * mse(left) - len(right) / len(data) * mse(right)
 
-
+# Дерево решений для задачи регрессии
+# Аналогично задаче классификации, разница лишь в поиске лучшего сплита(на основе mse), подсчете важности фичей, подсчете предсказания
 class MyTreeReg:
     def __init__(self, max_depth=5, min_samples_split=2, max_leafs=20, bins=None):
         self.max_depth = max_depth
