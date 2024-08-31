@@ -3,11 +3,12 @@ import numpy as np
 import pandas as pd
 from DecisionTreeREG import MyTreeReg, calculate_metric
 
-
-# Градиентный бустинг над решающими деревьями c механизмом early_stopping будет состоять из трех собственных параметров:
+# Ансамблевый алгоритм стохастического градиентного бустинга над решающими деревьями для задачи регрессии
+# Возможна поддержка изменяющейся learning_rate(lambda функция). Подсчитывается важность фичей
+# Реализованы механизм early_stopping и регуляризация(штраф за количество листьев) для защиты от переобучения, 
 # n_estimators – количество деревьев в лесу, learning_rate – скорость обучения, reg - отвечающий за регуляризацию
-# всех параметров, присущих дереву решений: max_depth, min_samples_split, max_leafs, bins,
-# и параметров для создания подвыборок для обучения max_features, max_samples, random_state
+# все параметры, присущие дереву решений: max_depth, min_samples_split, max_leafs, bins,
+# параметры для создания подвыборок для обучения: max_features, max_samples, random_state
 
 class MyBoostReg:
     def __init__(self, n_estimators=10, learning_rate=0.1, max_depth=5, min_samples_split=2, max_leafs=20, bins=16,
