@@ -1,8 +1,11 @@
 import numpy as np
 import pandas as pd
 from scipy.stats import mode
+from scipy.spatial.distance import cosine
 
-
+# Взвешенный KNN для классификации
+# Возможные веса uniform(у всех вес=1), rank(на основе порядкового номера), distance(на основе дистанции)
+# Реализованы метрики: euclidean, chebyshev, manhattan, cosine
 class MyKNNClf:
     def __init__(self, k=1, metric='euclidean', weight='uniform'):
         self.k = k
@@ -26,7 +29,7 @@ class MyKNNClf:
         elif self.weight == 'rank':
             weights = 1 / (np.arange(1, self.k + 1))
         elif self.weight == 'distance':
-            weights = 1 / dist[nearest_indices]  # Add small epsilon to avoid division by zero
+            weights = 1 / dist[nearest_indices]  # Add small epsilon to avoid division by zero?
         return self.y_train.iloc[nearest_indices], weights
 
     # Дистанции до точки от тренировочного набора для заданной метрики
@@ -37,6 +40,8 @@ class MyKNNClf:
             return np.max(np.abs(self.X_train - dot), axis=1)
         elif self.metric == 'manhattan':
             return np.sum(np.abs(self.X_train - dot), axis=1)
+        elif self.metric == 'cosine':
+            return np.array([cosine(x, dot) for x in self.X_train.values])
 
     def predict(self, X):
         predictions = []
