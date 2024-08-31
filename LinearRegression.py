@@ -13,6 +13,7 @@ def calculate_metric(y, y_pred, metric):
 
 
 # "Классическая" линейная регрессия с алгоритмом стохастического градиентного спуска, изменяющейся скоростью обучения learning_rate и регуляризацией elastic net
+# Реализованы метрики: mae, mse, rmse, mape, r2
 class MyLineReg:
     def __init__(self, n_iter, learning_rate=0.1, sgd_sample=None, reg=None, l1_coef=0, l2_coef=0, metric=None, random_state=42):
         self.n_iter = n_iter
