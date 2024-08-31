@@ -1,6 +1,11 @@
 import numpy as np
 import pandas as pd
 
+#  Итерационный алгоритм K-Means для задачи кластеризации
+#  n_clusters – количество кластеров, которые нужно сформировать
+#  max_iter – количество итераций алгоритма
+#  n_init – сколько раз прогоняется алгоритм k-means
+#  random_state – для воспроизводимости результата зафиксируем сид
 class MyKMeans:
     def __init__(self, n_clusters=3, max_iter=10, n_init=3, random_state=42):
         self.n_clusters = n_clusters
