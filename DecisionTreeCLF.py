@@ -65,7 +65,11 @@ def information_gain(data, mask, criterion):
     elif criterion == 'gini':
         return gini_impurity(data) - len(left) / len(data) * gini_impurity(left) - len(right) / len(data) * gini_impurity(right)
 
-
+# Дерево решений для задачи классификации
+# Лучший сплит находится по приросту информации, вычисленному с помощью энтропии Шеннона или коэффициенту Джини
+# Потенциальные сплиты находятся с помощью np.histograms(за это отвечает параметр bins)
+# Дерево строится с учетом ограничений на максимальную глубину, максимальное кол-во листьев и допустимое кол-во экземпляров в узле. Однако при достижении ограничений дерево достраивается до логического конца
+# Также в переменной класса fi подсчитывается важность фичей (аналог weights из регрессий)
 class MyTreeClf:
     def __init__(self, max_depth=5, min_samples_split=2, max_leafs=20, bins=None, criterion='entropy'):
         self.max_depth = max_depth
