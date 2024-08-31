@@ -17,11 +17,13 @@ def calculate_metric(y, y_pred, metric):
     elif metric == 'r2':
         return 1 - np.mean(delta ** 2) / np.mean((y - np.average(y)) ** 2)
 
+# Ансамблевый алгоритм случайного леса для задачи регрессии
+# Также реализован подсчет важности фичей и Out of Bag ошибки, сохраненной в переменной класса oob_score_
 # n_estimators – количество деревьев в лесу.
 # max_features – доля фичей, которая будет случайным образом отбираться для каждого дерева. От 0.0 до 1.0
 # max_samples – доля сэмплов, которая будет случайным образом отобрана из датасета для каждого дерева. От 0.0 до 1.0
 # random_state – для воспроизводимости результата зафиксируем сид
-# и всех параметров, присущих дереву решений: max_depth, min_samples_split, max_leafs, bins
+# все параметры, присущие дереву решений: max_depth, min_samples_split, max_leafs, bins
 class MyForestReg:
     def __init__(self, n_estimators=10, max_features=0.5, max_samples=0.5, random_state=42, max_depth=5, min_samples_split=2, max_leafs=20, bins=16, oob_score=None):
         self.n_estimators = n_estimators
