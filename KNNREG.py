@@ -1,6 +1,9 @@
 import numpy as np
 from scipy.spatial.distance import cosine
 
+# Взвешенный KNN для регрессии
+# Возможные веса uniform(у всех вес=1), rank(на основе порядкового номера), distance(на основе дистанции)
+# Реализованы метрики: euclidean, chebyshev, manhattan, cosine
 class MyKNNReg:
     def __init__(self, k=3, metric='euclidean', weight='uniform'):
         self.k = k
